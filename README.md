@@ -3,20 +3,16 @@ This demo fetches data through the API provided by XKCD and uses Airflow and dbt
 Based on this, it's possible to gain valuable insights on costs, reviews, views, and other trends.
 
 ## Overview
-```
-┌───────┐ ┌───────┐┌───────────┐┌──────────┐
-│   1   │ │    2  ││    3      ││   4      │
-│ XKCD  │ │  DWH  ││   dbt     ││  DWH     │
-│  api  │ │Staging││ Processing││Processed │
-└───────┘ └───────┘└───────────┘└──────────┘
-┌──────────────────────────────────────────┐
-│                     5                    │
-│            Airflow/Orchestration         │
-│                                          │
-└──────────────────────────────────────────┘
-┌──────────────────────────────────────────┐
-│           Postgresql/Database  (6)       │
-└──────────────────────────────────────────┘
+
+```mermaid
+flowchart LR
+    A[XKCD API (1)] --> B[DWH Staging (2)]
+    B --> C[dbt Processing (3)]
+    C --> D[DWH Processed (4)]
+    subgraph Airflow/Orchestration
+        A & B & C & D
+    end
+    Airflow/Orchestration (5) --> E[PostgreSQL/Database (6)]
 ```
 
 This diagram provides a high-level overview of the data pipeline architecture:

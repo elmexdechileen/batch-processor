@@ -10456,3 +10456,50 @@ File Path                                  PID    Runtime      # DAGs    # Error
 /usr/local/airflow/dags/XKCD_daily/dag.py                           1           0  0.90s           2025-03-10T17:09:00                      12
 /usr/local/airflow/dags/XKCD_batch/dag.py                           1           0  0.10s           2025-03-10T17:08:46                      10
 ================================================================================
+[2025-03-10T17:09:40.832+0000] {manager.py:997} INFO - 
+================================================================================
+DAG File Processing Stats
+
+File Path                                  PID    Runtime      # DAGs    # Errors  Last Runtime    Last Run               Last # of DB Queries
+-----------------------------------------  -----  ---------  --------  ----------  --------------  -------------------  ----------------------
+/usr/local/airflow/dags/XKCD_daily/dag.py                           1           0  0.14s           2025-03-10T17:09:30                      12
+/usr/local/airflow/dags/XKCD_batch/dag.py                           1           0  0.10s           2025-03-10T17:09:16                      10
+================================================================================
+[2025-03-10T17:10:11.228+0000] {manager.py:997} INFO - 
+================================================================================
+DAG File Processing Stats
+
+File Path                                  PID    Runtime      # DAGs    # Errors  Last Runtime    Last Run               Last # of DB Queries
+-----------------------------------------  -----  ---------  --------  ----------  --------------  -------------------  ----------------------
+/usr/local/airflow/dags/XKCD_batch/dag.py                           1           0  0.11s           2025-03-10T17:09:46                      10
+/usr/local/airflow/dags/XKCD_daily/dag.py                           1           0  0.11s           2025-03-10T17:10:01                      12
+================================================================================
+[2025-03-10T17:10:41.697+0000] {manager.py:997} INFO - 
+================================================================================
+DAG File Processing Stats
+
+File Path                                  PID    Runtime      # DAGs    # Errors  Last Runtime    Last Run               Last # of DB Queries
+-----------------------------------------  -----  ---------  --------  ----------  --------------  -------------------  ----------------------
+/usr/local/airflow/dags/XKCD_batch/dag.py                           1           0  0.13s           2025-03-10T17:10:17                      10
+/usr/local/airflow/dags/XKCD_daily/dag.py                           1           0  0.11s           2025-03-10T17:10:31                      12
+================================================================================
+[2025-03-10T17:11:11.156+0000] {manager.py:821} INFO - Searching for files in /usr/local/airflow/dags
+[2025-03-10T17:11:11.186+0000] {manager.py:824} INFO - There are 2 files in /usr/local/airflow/dags
+[2025-03-10T17:11:12.209+0000] {manager.py:997} INFO - 
+================================================================================
+DAG File Processing Stats
+
+File Path                                  PID    Runtime      # DAGs    # Errors  Last Runtime    Last Run               Last # of DB Queries
+-----------------------------------------  -----  ---------  --------  ----------  --------------  -------------------  ----------------------
+/usr/local/airflow/dags/XKCD_batch/dag.py                           1           0  0.10s           2025-03-10T17:10:47                      10
+/usr/local/airflow/dags/XKCD_daily/dag.py                           1           0  0.10s           2025-03-10T17:11:02                      12
+================================================================================
+[2025-03-10T17:11:42.532+0000] {manager.py:997} INFO - 
+================================================================================
+DAG File Processing Stats
+
+File Path                                  PID    Runtime      # DAGs    # Errors  Last Runtime    Last Run               Last # of DB Queries
+-----------------------------------------  -----  ---------  --------  ----------  --------------  -------------------  ----------------------
+/usr/local/airflow/dags/XKCD_daily/dag.py                           1           0  0.11s           2025-03-10T17:11:32                      12
+/usr/local/airflow/dags/XKCD_batch/dag.py                           1           0  0.10s           2025-03-10T17:11:18                      10
+================================================================================
