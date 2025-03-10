@@ -6,13 +6,13 @@ Based on this, it's possible to gain valuable insights on costs, reviews, views,
 
 ```mermaid
 flowchart LR
-    A[XKCD API (1)] --> B[DWH Staging (2)]
-    B --> C[dbt Processing (3)]
-    C --> D[DWH Processed (4)]
+    A[XKCD API - 1 ] --> B[DWH Staging - 2]
+    B --> C[dbt Processing - 3]
+    C --> D[DWH Processed - 4]
     subgraph Airflow/Orchestration
         A & B & C & D
     end
-    Airflow/Orchestration (5) --> E[PostgreSQL/Database (6)]
+    Airflow/Orchestration --> E[PostgreSQL/Database - 6]
 ```
 
 This diagram provides a high-level overview of the data pipeline architecture:

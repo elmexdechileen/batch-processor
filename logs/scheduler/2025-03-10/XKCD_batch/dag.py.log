@@ -5450,3 +5450,31 @@
 [2025-03-10T17:11:48.711+0000] {logging_mixin.py:190} INFO - [2025-03-10T17:11:48.710+0000] {dag.py:3239} INFO - Sync 1 DAGs
 [2025-03-10T17:11:48.734+0000] {logging_mixin.py:190} INFO - [2025-03-10T17:11:48.734+0000] {dag.py:4180} INFO - Setting next_dagrun for xkcd_batch_loader to None, run_after=None
 [2025-03-10T17:11:48.773+0000] {processor.py:208} INFO - Processing /usr/local/airflow/dags/XKCD_batch/dag.py took 0.129 seconds
+[2025-03-10T17:12:19.025+0000] {processor.py:186} INFO - Started process (PID=3865) to work on /usr/local/airflow/dags/XKCD_batch/dag.py
+[2025-03-10T17:12:19.026+0000] {processor.py:914} INFO - Processing file /usr/local/airflow/dags/XKCD_batch/dag.py for tasks to queue
+[2025-03-10T17:12:19.028+0000] {logging_mixin.py:190} INFO - [2025-03-10T17:12:19.028+0000] {dagbag.py:588} INFO - Filling up the DagBag from /usr/local/airflow/dags/XKCD_batch/dag.py
+[2025-03-10T17:12:19.045+0000] {processor.py:925} INFO - DAG(s) 'xkcd_batch_loader' retrieved from /usr/local/airflow/dags/XKCD_batch/dag.py
+[2025-03-10T17:12:19.078+0000] {logging_mixin.py:190} INFO - [2025-03-10T17:12:19.078+0000] {dag.py:3239} INFO - Sync 1 DAGs
+[2025-03-10T17:12:19.095+0000] {logging_mixin.py:190} INFO - [2025-03-10T17:12:19.095+0000] {dag.py:4180} INFO - Setting next_dagrun for xkcd_batch_loader to None, run_after=None
+[2025-03-10T17:12:19.135+0000] {processor.py:208} INFO - Processing /usr/local/airflow/dags/XKCD_batch/dag.py took 0.114 seconds
+[2025-03-10T17:12:49.561+0000] {processor.py:186} INFO - Started process (PID=3875) to work on /usr/local/airflow/dags/XKCD_batch/dag.py
+[2025-03-10T17:12:49.561+0000] {processor.py:914} INFO - Processing file /usr/local/airflow/dags/XKCD_batch/dag.py for tasks to queue
+[2025-03-10T17:12:49.563+0000] {logging_mixin.py:190} INFO - [2025-03-10T17:12:49.563+0000] {dagbag.py:588} INFO - Filling up the DagBag from /usr/local/airflow/dags/XKCD_batch/dag.py
+[2025-03-10T17:12:49.580+0000] {processor.py:925} INFO - DAG(s) 'xkcd_batch_loader' retrieved from /usr/local/airflow/dags/XKCD_batch/dag.py
+[2025-03-10T17:12:49.603+0000] {logging_mixin.py:190} INFO - [2025-03-10T17:12:49.602+0000] {dag.py:3239} INFO - Sync 1 DAGs
+[2025-03-10T17:12:49.614+0000] {logging_mixin.py:190} INFO - [2025-03-10T17:12:49.614+0000] {dag.py:4180} INFO - Setting next_dagrun for xkcd_batch_loader to None, run_after=None
+[2025-03-10T17:12:49.636+0000] {processor.py:208} INFO - Processing /usr/local/airflow/dags/XKCD_batch/dag.py took 0.079 seconds
+[2025-03-10T17:13:20.007+0000] {processor.py:186} INFO - Started process (PID=3885) to work on /usr/local/airflow/dags/XKCD_batch/dag.py
+[2025-03-10T17:13:20.007+0000] {processor.py:914} INFO - Processing file /usr/local/airflow/dags/XKCD_batch/dag.py for tasks to queue
+[2025-03-10T17:13:20.009+0000] {logging_mixin.py:190} INFO - [2025-03-10T17:13:20.008+0000] {dagbag.py:588} INFO - Filling up the DagBag from /usr/local/airflow/dags/XKCD_batch/dag.py
+[2025-03-10T17:13:20.023+0000] {processor.py:925} INFO - DAG(s) 'xkcd_batch_loader' retrieved from /usr/local/airflow/dags/XKCD_batch/dag.py
+[2025-03-10T17:13:20.044+0000] {logging_mixin.py:190} INFO - [2025-03-10T17:13:20.044+0000] {dag.py:3239} INFO - Sync 1 DAGs
+[2025-03-10T17:13:20.066+0000] {logging_mixin.py:190} INFO - [2025-03-10T17:13:20.066+0000] {dag.py:4180} INFO - Setting next_dagrun for xkcd_batch_loader to None, run_after=None
+[2025-03-10T17:13:20.096+0000] {processor.py:208} INFO - Processing /usr/local/airflow/dags/XKCD_batch/dag.py took 0.093 seconds
+[2025-03-10T17:13:50.500+0000] {processor.py:186} INFO - Started process (PID=3895) to work on /usr/local/airflow/dags/XKCD_batch/dag.py
+[2025-03-10T17:13:50.500+0000] {processor.py:914} INFO - Processing file /usr/local/airflow/dags/XKCD_batch/dag.py for tasks to queue
+[2025-03-10T17:13:50.502+0000] {logging_mixin.py:190} INFO - [2025-03-10T17:13:50.501+0000] {dagbag.py:588} INFO - Filling up the DagBag from /usr/local/airflow/dags/XKCD_batch/dag.py
+[2025-03-10T17:13:50.519+0000] {processor.py:925} INFO - DAG(s) 'xkcd_batch_loader' retrieved from /usr/local/airflow/dags/XKCD_batch/dag.py
+[2025-03-10T17:13:50.540+0000] {logging_mixin.py:190} INFO - [2025-03-10T17:13:50.540+0000] {dag.py:3239} INFO - Sync 1 DAGs
+[2025-03-10T17:13:50.552+0000] {logging_mixin.py:190} INFO - [2025-03-10T17:13:50.552+0000] {dag.py:4180} INFO - Setting next_dagrun for xkcd_batch_loader to None, run_after=None
+[2025-03-10T17:13:50.591+0000] {processor.py:208} INFO - Processing /usr/local/airflow/dags/XKCD_batch/dag.py took 0.095 seconds
