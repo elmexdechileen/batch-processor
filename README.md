@@ -113,3 +113,11 @@ DAG overview in Airflow
 ![Airflow Screenshot](./screenshots/airflow.png)
 The daily load DAG:
 ![Airflow Screenshot DAG](./screenshots/airflow-dag.png)
+
+## Possible improvements
+- **Enhanced Data Quality Checks**: Implement more comprehensive data quality checks, such as verifying data ranges, checking for duplicates, and ensuring referential integrity.
+- **Error Handling and Logging**: Improve error handling and logging mechanisms within the Airflow DAGs to better capture and diagnose issues during data processing.
+- **Scalability**: Optimize the data pipeline to handle larger volumes of data and improve performance.
+- **Monitoring and Alerts**: Set up monitoring and alerting to notify the team of any issues or anomalies in the data pipeline.
+- **Data Lineage**: Implement data lineage tracking to provide visibility into the flow of data through the pipeline and transformations.
+- **Advanced data insights**: Think of more advanced transformations and generate better insights.
