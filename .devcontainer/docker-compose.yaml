@@ -24,7 +24,7 @@ services:
 
     airflow:
         container_name: airflow
-        image: apache/airflow:2.1.2
+        build: ../airflow
         environment:
             AIRFLOW__CORE__EXECUTOR: LocalExecutor
             AIRFLOW__CORE__SQL_ALCHEMY_CONN: postgresql+psycopg2://airflow:airflow@postgres/airflow
@@ -39,8 +39,9 @@ services:
         volumes:
             - ../dags:/opt/airflow/dags
             - ../logs:/opt/airflow/logs  # Mount the logs folder for persistence
+            - ../dbt:/dbt # Mount the dbt folder for dbt run
         command: >
-            bash -c "
+            sh -c "
             airflow db init &&
             (airflow users list | grep -q 'admin' || airflow users create --username admin --password admin --firstname Admin --lastname User --role Admin --email admin@example.com) &&
             (airflow connections get 'dwh_postgresql' || airflow connections add 'dwh_postgresql' --conn-type 'postgres' --conn-host 'dwh' --conn-schema 'dwh' --conn-login 'dwh' --conn-password 'dwh' --conn-port '5432') &&
@@ -51,7 +52,7 @@ services:
 
     airflow-scheduler:
         container_name: airflow-scheduler
-        image: apache/airflow:2.1.2
+        build: ../airflow
         environment:
             AIRFLOW__CORE__EXECUTOR: LocalExecutor
             AIRFLOW__CORE__SQL_ALCHEMY_CONN: postgresql+psycopg2://airflow:airflow@postgres/airflow
@@ -66,6 +67,7 @@ services:
         volumes:
             - ../dags:/usr/local/airflow/dags
             - ../logs:/opt/airflow/logs  # Mount the logs folder for persistence
+            - ../dbt:/dbt # Mount the dbt folder for dbt run
         command: "airflow scheduler"
 
     dbt:

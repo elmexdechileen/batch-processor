@@ -7,6 +7,7 @@ from airflow.utils.dates import days_ago
 from airflow.utils.decorators import apply_defaults
 import requests
 import json
+from airflow.operators.bash_operator import BashOperator
 
 default_args = {
     "owner": "airflow",
@@ -18,7 +19,8 @@ dag = DAG(
     "xkcd_daily",
     default_args=default_args,
     description="A simple DAG to fetch XKCD data and store in DWH",
-    schedule_interval="0 0 * * 1,3,5",  # Runs on Monday, Wednesday, and Friday
+    # Runs at 4 AM on Monday, Wednesday, and Friday
+    schedule_interval="0 4 * * 1,3,5",
 )
 
 
@@ -80,7 +82,8 @@ def store_xkcd_data(**context):
     conn = pg_hook.get_conn()
     cursor = conn.cursor()
 
-    cursor.execute("SELECT num FROM staging.comics WHERE num = %s", (xkcd_data["num"],))
+    cursor.execute(
+        "SELECT num FROM staging.comics WHERE num = %s", (xkcd_data["num"],))
     result = cursor.fetchone()
 
     # Make sure only to add new values (add idempotency)
@@ -127,9 +130,30 @@ class XKCDDataSensor(BaseSensorOperator):
         """
         xkcd_data = fetch_xkcd_data()
         if check_xkcd_data(xkcd_data):
-            context["task_instance"].xcom_push(key="xkcd_data", value=xkcd_data)
+            context["task_instance"].xcom_push(
+                key="xkcd_data", value=xkcd_data)
             return True
         return False
+
+
+dbt_run_task = BashOperator(
+    task_id="dbt_run",
+    bash_command="cd /dbt/transformations && dbt run --project-dir /dbt/transformations --profiles-dir /dbt",
+    dag=dag,
+)
+
+dbt_test_task = BashOperator(
+    task_id="dbt_test",
+    bash_command="cd /dbt/transformations && dbt test --project-dir /dbt/transformations --profiles-dir /dbt",
+    dag=dag,
+)
+
+xkcd_data_sensor_task = XKCDDataSensor(
+    task_id="xkcd_data_sensor",
+    poke_interval=600,  # Retry every 10 minutes
+    timeout=60 * 60 * 12,  # Timeout after 12 hours
+    dag=dag,
+)
 
 
 fetch_xkcd_data_task = PythonOperator(
@@ -138,12 +162,6 @@ fetch_xkcd_data_task = PythonOperator(
     dag=dag,
 )
 
-xkcd_data_sensor_task = XKCDDataSensor(
-    task_id="xkcd_data_sensor",
-    poke_interval=600,  # Retry every 10 minutes
-    timeout=60 * 60 * 24,  # Timeout after 24 hours
-    dag=dag,
-)
 
 store_xkcd_data_task = PythonOperator(
     task_id="store_xkcd_data",
@@ -152,4 +170,4 @@ store_xkcd_data_task = PythonOperator(
     dag=dag,
 )
 
-fetch_xkcd_data_task >> xkcd_data_sensor_task >> store_xkcd_data_task
+xkcd_data_sensor_task >> fetch_xkcd_data_task >> store_xkcd_data_task >> dbt_test_task >> dbt_run_task

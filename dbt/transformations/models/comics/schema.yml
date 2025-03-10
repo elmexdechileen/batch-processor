@@ -1,35 +1,58 @@
 version: 2
 models:
-  - name: staging_comics
+  - name: dim_comics
     description: "A model for comics data"
     columns:
-      - name: month
-        description: "The month the comic was published"
       - name: num
         description: "The comic number"
-      - name: link
-        description: "A link related to the comic"
-      - name: year
-        description: "The year the comic was published"
-      - name: news
-        description: "News related to the comic"
-      - name: safetitle
-        description: "A safe title for the comic"
-      - name: transcript
-        description: "The transcript of the comic"
+        tests:
+          - unique
+          - not_null
+      - name: date
+        description: "The date the comic was published"
       - name: alt
-        description: "The alt text of the comic"
+        description: "Alt text for the comic"
       - name: img
         description: "The URL of the comic image"
       - name: title
         description: "The title of the comic"
-      - name: day
-        description: "The day the comic was published"
-
-  - name: comics_review
+  - name: fact_review
     description: "A table with comic reviews"
     columns:
       - name: num
         description: "The comic number"
       - name: review
         description: "A review score for the comic"
+  - name: fact_cost
+    description: "A table with comic costs"
+    columns:
+      - name: num
+        description: "The comic number"
+      - name: cost
+        description: "The costs for the comic"
+  - name: fact_views
+    description: "A table with comic views"
+    columns:
+      - name: num
+        description: "The comic number"
+      - name: views
+        description: "The views for the comic"
+  - name: dm_comic_overview
+    description: "A model for comic overview data"
+    columns:
+      - name: comic_number
+        description: "The comic number"
+      - name: comic_title
+        description: "The title of the comic"
+      - name: comic_date
+        description: "The date the comic was published"
+      - name: comic_link
+        description: "The URL of the comic image"
+      - name: alttext
+        description: "Alt text for the comic"
+      - name: comic_cost
+        description: "The costs for the comic"
+      - name: comic_review_score
+        description: "A review score for the comic"
+      - name: comic_views
+        description: "The views for the comic"

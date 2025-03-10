@@ -1,0 +1,20 @@
+[2025-03-10T16:47:35.768+0000] {local_task_job_runner.py:123} INFO - ::group::Pre task execution logs
+[2025-03-10T16:47:35.794+0000] {taskinstance.py:2614} INFO - Dependencies all met for dep_context=non-requeueable deps ti=<TaskInstance: xkcd_daily.store_xkcd_data manual__2025-03-10T16:47:24.863746+00:00 [queued]>
+[2025-03-10T16:47:35.800+0000] {taskinstance.py:2614} INFO - Dependencies all met for dep_context=requeueable deps ti=<TaskInstance: xkcd_daily.store_xkcd_data manual__2025-03-10T16:47:24.863746+00:00 [queued]>
+[2025-03-10T16:47:35.801+0000] {taskinstance.py:2867} INFO - Starting attempt 1 of 2
+[2025-03-10T16:47:35.813+0000] {taskinstance.py:2890} INFO - Executing <Task(PythonOperator): store_xkcd_data> on 2025-03-10 16:47:24.863746+00:00
+[2025-03-10T16:47:35.817+0000] {logging_mixin.py:190} WARNING - /home/***/.local/lib/python3.12/site-packages/***/task/task_runner/standard_task_runner.py:70 DeprecationWarning: This process (pid=3354) is multi-threaded, use of fork() may lead to deadlocks in the child.
+[2025-03-10T16:47:35.817+0000] {standard_task_runner.py:104} INFO - Running: ['***', 'tasks', 'run', 'xkcd_daily', 'store_xkcd_data', 'manual__2025-03-10T16:47:24.863746+00:00', '--job-id', '165', '--raw', '--subdir', 'DAGS_FOLDER/XKCD_daily/dag.py', '--cfg-path', '/tmp/tmp7ihgdhbb']
+[2025-03-10T16:47:35.819+0000] {standard_task_runner.py:72} INFO - Started process 3355 to run task
+[2025-03-10T16:47:35.821+0000] {standard_task_runner.py:105} INFO - Job 165: Subtask store_xkcd_data
+[2025-03-10T16:47:35.841+0000] {logging_mixin.py:190} WARNING - /home/***/.local/lib/python3.12/site-packages/***/settings.py:209 DeprecationWarning: The sql_alchemy_conn option in [core] has been moved to the sql_alchemy_conn option in [database] - the old setting has been used, but please update your config.
+[2025-03-10T16:47:35.888+0000] {task_command.py:467} INFO - Running <TaskInstance: xkcd_daily.store_xkcd_data manual__2025-03-10T16:47:24.863746+00:00 [running]> on host 157a64d0872f
+[2025-03-10T16:47:35.980+0000] {taskinstance.py:3134} INFO - Exporting env vars: AIRFLOW_CTX_DAG_OWNER='***' AIRFLOW_CTX_DAG_ID='xkcd_daily' AIRFLOW_CTX_TASK_ID='store_xkcd_data' AIRFLOW_CTX_EXECUTION_DATE='2025-03-10T16:47:24.863746+00:00' AIRFLOW_CTX_TRY_NUMBER='1' AIRFLOW_CTX_DAG_RUN_ID='manual__2025-03-10T16:47:24.863746+00:00'
+[2025-03-10T16:47:35.981+0000] {taskinstance.py:732} INFO - ::endgroup::
+[2025-03-10T16:47:36.022+0000] {base.py:84} INFO - Retrieving connection '***_postgresql'
+[2025-03-10T16:47:36.037+0000] {python.py:240} INFO - Done. Returned value was: None
+[2025-03-10T16:47:36.050+0000] {taskinstance.py:341} INFO - ::group::Post task execution logs
+[2025-03-10T16:47:36.050+0000] {taskinstance.py:353} INFO - Marking task as SUCCESS. dag_id=xkcd_daily, task_id=store_xkcd_data, run_id=manual__2025-03-10T16:47:24.863746+00:00, execution_date=20250310T164724, start_date=20250310T164735, end_date=20250310T164736
+[2025-03-10T16:47:36.115+0000] {local_task_job_runner.py:266} INFO - Task exited with return code 0
+[2025-03-10T16:47:36.144+0000] {taskinstance.py:3901} INFO - 1 downstream tasks scheduled from follow-on schedule check
+[2025-03-10T16:47:36.148+0000] {local_task_job_runner.py:245} INFO - ::endgroup::

@@ -1,4 +1,8 @@
-{{ config(materialized='table') }}
+{{ config(
+    materialized='table',
+    unique_key='num'
+) }}
+
 
 with source_data as (
     select
