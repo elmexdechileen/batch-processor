@@ -5939,3 +5939,24 @@ NameError: name 'dbt_run_task' is not defined
 [2025-03-10T17:07:28.362+0000] {logging_mixin.py:190} INFO - [2025-03-10T17:07:28.361+0000] {dag.py:3239} INFO - Sync 1 DAGs
 [2025-03-10T17:07:28.383+0000] {logging_mixin.py:190} INFO - [2025-03-10T17:07:28.383+0000] {dag.py:4180} INFO - Setting next_dagrun for xkcd_daily to 2025-03-10 04:00:00+00:00, run_after=2025-03-12 04:00:00+00:00
 [2025-03-10T17:07:28.401+0000] {processor.py:208} INFO - Processing /usr/local/airflow/dags/XKCD_daily/dag.py took 0.097 seconds
+[2025-03-10T17:07:58.602+0000] {processor.py:186} INFO - Started process (PID=3780) to work on /usr/local/airflow/dags/XKCD_daily/dag.py
+[2025-03-10T17:07:58.603+0000] {processor.py:914} INFO - Processing file /usr/local/airflow/dags/XKCD_daily/dag.py for tasks to queue
+[2025-03-10T17:07:58.604+0000] {logging_mixin.py:190} INFO - [2025-03-10T17:07:58.604+0000] {dagbag.py:588} INFO - Filling up the DagBag from /usr/local/airflow/dags/XKCD_daily/dag.py
+[2025-03-10T17:07:58.623+0000] {processor.py:925} INFO - DAG(s) 'xkcd_daily' retrieved from /usr/local/airflow/dags/XKCD_daily/dag.py
+[2025-03-10T17:07:58.649+0000] {logging_mixin.py:190} INFO - [2025-03-10T17:07:58.649+0000] {dag.py:3239} INFO - Sync 1 DAGs
+[2025-03-10T17:07:58.675+0000] {logging_mixin.py:190} INFO - [2025-03-10T17:07:58.675+0000] {dag.py:4180} INFO - Setting next_dagrun for xkcd_daily to 2025-03-10 04:00:00+00:00, run_after=2025-03-12 04:00:00+00:00
+[2025-03-10T17:07:58.699+0000] {processor.py:208} INFO - Processing /usr/local/airflow/dags/XKCD_daily/dag.py took 0.101 seconds
+[2025-03-10T17:08:29.039+0000] {processor.py:186} INFO - Started process (PID=3790) to work on /usr/local/airflow/dags/XKCD_daily/dag.py
+[2025-03-10T17:08:29.040+0000] {processor.py:914} INFO - Processing file /usr/local/airflow/dags/XKCD_daily/dag.py for tasks to queue
+[2025-03-10T17:08:29.041+0000] {logging_mixin.py:190} INFO - [2025-03-10T17:08:29.041+0000] {dagbag.py:588} INFO - Filling up the DagBag from /usr/local/airflow/dags/XKCD_daily/dag.py
+[2025-03-10T17:08:29.100+0000] {processor.py:925} INFO - DAG(s) 'xkcd_daily' retrieved from /usr/local/airflow/dags/XKCD_daily/dag.py
+[2025-03-10T17:08:29.132+0000] {logging_mixin.py:190} INFO - [2025-03-10T17:08:29.132+0000] {dag.py:3239} INFO - Sync 1 DAGs
+[2025-03-10T17:08:29.151+0000] {logging_mixin.py:190} INFO - [2025-03-10T17:08:29.150+0000] {dag.py:4180} INFO - Setting next_dagrun for xkcd_daily to 2025-03-10 04:00:00+00:00, run_after=2025-03-12 04:00:00+00:00
+[2025-03-10T17:08:29.171+0000] {processor.py:208} INFO - Processing /usr/local/airflow/dags/XKCD_daily/dag.py took 0.135 seconds
+[2025-03-10T17:08:59.467+0000] {processor.py:186} INFO - Started process (PID=3800) to work on /usr/local/airflow/dags/XKCD_daily/dag.py
+[2025-03-10T17:08:59.468+0000] {processor.py:914} INFO - Processing file /usr/local/airflow/dags/XKCD_daily/dag.py for tasks to queue
+[2025-03-10T17:08:59.469+0000] {logging_mixin.py:190} INFO - [2025-03-10T17:08:59.469+0000] {dagbag.py:588} INFO - Filling up the DagBag from /usr/local/airflow/dags/XKCD_daily/dag.py
+[2025-03-10T17:08:59.488+0000] {processor.py:925} INFO - DAG(s) 'xkcd_daily' retrieved from /usr/local/airflow/dags/XKCD_daily/dag.py
+[2025-03-10T17:08:59.517+0000] {logging_mixin.py:190} INFO - [2025-03-10T17:08:59.517+0000] {dag.py:3239} INFO - Sync 1 DAGs
+[2025-03-10T17:08:59.535+0000] {logging_mixin.py:190} INFO - [2025-03-10T17:08:59.535+0000] {dag.py:4180} INFO - Setting next_dagrun for xkcd_daily to 2025-03-10 04:00:00+00:00, run_after=2025-03-12 04:00:00+00:00
+[2025-03-10T17:09:00.341+0000] {processor.py:208} INFO - Processing /usr/local/airflow/dags/XKCD_daily/dag.py took 0.878 seconds

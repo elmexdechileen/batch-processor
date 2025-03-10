@@ -113,5 +113,7 @@ make sure it is not `NULL` and unique. You can write way more elaborate checks
 using sql but I thought this is a good example.
 
 ## Screenshots
+DAG overview in Airflow
 ![Airflow Screenshot](./screenshots/airflow.png)
+The daily load DAG:
 ![Airflow Screenshot DAG](./screenshots/airflow-dag.png)
