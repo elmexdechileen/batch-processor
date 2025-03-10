@@ -1,0 +1,25 @@
+[2025-03-10 09:07:30,431] {taskinstance.py:896} INFO - Dependencies all met for <TaskInstance: xkcd_daily.xkcd_data_sensor 2025-03-10T09:07:28.706756+00:00 [queued]>
+[2025-03-10 09:07:30,437] {taskinstance.py:896} INFO - Dependencies all met for <TaskInstance: xkcd_daily.xkcd_data_sensor 2025-03-10T09:07:28.706756+00:00 [queued]>
+[2025-03-10 09:07:30,437] {taskinstance.py:1087} INFO - 
+--------------------------------------------------------------------------------
+[2025-03-10 09:07:30,438] {taskinstance.py:1088} INFO - Starting attempt 1 of 2
+[2025-03-10 09:07:30,438] {taskinstance.py:1089} INFO - 
+--------------------------------------------------------------------------------
+[2025-03-10 09:07:30,445] {taskinstance.py:1107} INFO - Executing <Task(XKCDDataSensor): xkcd_data_sensor> on 2025-03-10T09:07:28.706756+00:00
+[2025-03-10 09:07:30,447] {standard_task_runner.py:52} INFO - Started process 207 to run task
+[2025-03-10 09:07:30,449] {standard_task_runner.py:76} INFO - Running: ['***', 'tasks', 'run', 'xkcd_daily', 'xkcd_data_sensor', '2025-03-10T09:07:28.706756+00:00', '--job-id', '6', '--pool', 'default_pool', '--raw', '--subdir', 'DAGS_FOLDER/XKCD_daily/dag.py', '--cfg-path', '/tmp/tmpwlttcs6x', '--error-file', '/tmp/tmpmb8__qcj']
+[2025-03-10 09:07:30,450] {standard_task_runner.py:77} INFO - Job 6: Subtask xkcd_data_sensor
+[2025-03-10 09:07:30,471] {logging_mixin.py:104} INFO - Running <TaskInstance: xkcd_daily.xkcd_data_sensor 2025-03-10T09:07:28.706756+00:00 [running]> on host dfff7782b6a2
+[2025-03-10 09:07:30,494] {taskinstance.py:1302} INFO - Exporting the following env vars:
+AIRFLOW_CTX_DAG_OWNER=***
+AIRFLOW_CTX_DAG_ID=xkcd_daily
+AIRFLOW_CTX_TASK_ID=xkcd_data_sensor
+AIRFLOW_CTX_EXECUTION_DATE=2025-03-10T09:07:28.706756+00:00
+AIRFLOW_CTX_DAG_RUN_ID=manual__2025-03-10T09:07:28.706756+00:00
+[2025-03-10 09:07:30,498] {base.py:78} INFO - Using connection to: id: xkcd_api. Host: https://xkcd.com/info.0.json, Port: None, Schema: None, Login: None, Password: None, extra: {}
+[2025-03-10 09:07:30,557] {logging_mixin.py:104} INFO - Fetched XKCD Data: {'month': '3', 'num': 3060, 'link': '', 'year': '2025', 'news': '', 'safe_title': 'Omniroll', 'transcript': '', 'alt': 'It seems wrong that Fruit by the Foot is only sold by weight or by number of rolls.', 'img': 'https://imgs.xkcd.com/comics/omniroll.png', 'title': 'Omniroll', 'day': '7'}
+[2025-03-10 09:07:30,562] {base.py:78} INFO - Using connection to: id: ***_postgresql. Host: ***, Port: 5432, Schema: ***, Login: ***, Password: ***, extra: {}
+[2025-03-10 09:07:30,573] {base.py:248} INFO - Success criteria met. Exiting.
+[2025-03-10 09:07:30,579] {taskinstance.py:1211} INFO - Marking task as SUCCESS. dag_id=xkcd_daily, task_id=xkcd_data_sensor, execution_date=20250310T090728, start_date=20250310T090730, end_date=20250310T090730
+[2025-03-10 09:07:30,596] {taskinstance.py:1265} INFO - 1 downstream tasks scheduled from follow-on schedule check
+[2025-03-10 09:07:30,621] {local_task_job.py:149} INFO - Task exited with return code 0

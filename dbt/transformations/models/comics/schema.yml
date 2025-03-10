@@ -1,0 +1,35 @@
+version: 2
+models:
+  - name: staging_comics
+    description: "A model for comics data"
+    columns:
+      - name: month
+        description: "The month the comic was published"
+      - name: num
+        description: "The comic number"
+      - name: link
+        description: "A link related to the comic"
+      - name: year
+        description: "The year the comic was published"
+      - name: news
+        description: "News related to the comic"
+      - name: safetitle
+        description: "A safe title for the comic"
+      - name: transcript
+        description: "The transcript of the comic"
+      - name: alt
+        description: "The alt text of the comic"
+      - name: img
+        description: "The URL of the comic image"
+      - name: title
+        description: "The title of the comic"
+      - name: day
+        description: "The day the comic was published"
+
+  - name: comics_review
+    description: "A table with comic reviews"
+    columns:
+      - name: num
+        description: "The comic number"
+      - name: review
+        description: "A review score for the comic"

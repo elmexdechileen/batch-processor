@@ -1,0 +1,13 @@
+# example profiles.yml file
+transformations:
+  target: prod
+  outputs:
+    prod:
+      type: postgres
+      host: dwh
+      user: dwh
+      password: dwh
+      port: 5432
+      dbname: dwh
+      schema: dbt_dwh
+      threads: 1

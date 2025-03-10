@@ -1,0 +1,41 @@
+[2025-03-10 10:29:04,258] {taskinstance.py:896} INFO - Dependencies all met for <TaskInstance: xkcd_batch_loader.store_xkcd_data 2025-03-10T10:29:03.607589+00:00 [queued]>
+[2025-03-10 10:29:04,268] {taskinstance.py:896} INFO - Dependencies all met for <TaskInstance: xkcd_batch_loader.store_xkcd_data 2025-03-10T10:29:03.607589+00:00 [queued]>
+[2025-03-10 10:29:04,268] {taskinstance.py:1087} INFO - 
+--------------------------------------------------------------------------------
+[2025-03-10 10:29:04,269] {taskinstance.py:1088} INFO - Starting attempt 1 of 2
+[2025-03-10 10:29:04,269] {taskinstance.py:1089} INFO - 
+--------------------------------------------------------------------------------
+[2025-03-10 10:29:04,286] {taskinstance.py:1107} INFO - Executing <Task(PythonOperator): store_xkcd_data> on 2025-03-10T10:29:03.607589+00:00
+[2025-03-10 10:29:04,288] {standard_task_runner.py:52} INFO - Started process 174 to run task
+[2025-03-10 10:29:04,289] {standard_task_runner.py:76} INFO - Running: ['***', 'tasks', 'run', 'xkcd_batch_loader', 'store_xkcd_data', '2025-03-10T10:29:03.607589+00:00', '--job-id', '2', '--pool', 'default_pool', '--raw', '--subdir', 'DAGS_FOLDER/XKCD_batch/dag.py', '--cfg-path', '/tmp/tmplkrj828i', '--error-file', '/tmp/tmpgxo8sbdh']
+[2025-03-10 10:29:04,292] {standard_task_runner.py:77} INFO - Job 2: Subtask store_xkcd_data
+[2025-03-10 10:29:04,333] {logging_mixin.py:104} INFO - Running <TaskInstance: xkcd_batch_loader.store_xkcd_data 2025-03-10T10:29:03.607589+00:00 [running]> on host f3143e736841
+[2025-03-10 10:29:04,426] {taskinstance.py:1302} INFO - Exporting the following env vars:
+AIRFLOW_CTX_DAG_OWNER=***
+AIRFLOW_CTX_DAG_ID=xkcd_batch_loader
+AIRFLOW_CTX_TASK_ID=store_xkcd_data
+AIRFLOW_CTX_EXECUTION_DATE=2025-03-10T10:29:03.607589+00:00
+AIRFLOW_CTX_DAG_RUN_ID=manual__2025-03-10T10:29:03.607589+00:00
+[2025-03-10 10:29:04,451] {base.py:78} INFO - Using connection to: id: ***_postgresql. Host: ***, Port: 5432, Schema: ***, Login: ***, Password: ***, extra: {}
+[2025-03-10 10:29:04,454] {taskinstance.py:1501} ERROR - Task failed with exception
+Traceback (most recent call last):
+  File "/home/airflow/.local/lib/python3.6/site-packages/airflow/models/taskinstance.py", line 1157, in _run_raw_task
+    self._prepare_and_execute_task_with_callbacks(context, task)
+  File "/home/airflow/.local/lib/python3.6/site-packages/airflow/models/taskinstance.py", line 1331, in _prepare_and_execute_task_with_callbacks
+    result = self._execute_task(context, task_copy)
+  File "/home/airflow/.local/lib/python3.6/site-packages/airflow/models/taskinstance.py", line 1361, in _execute_task
+    result = task_copy.execute(context=context)
+  File "/home/airflow/.local/lib/python3.6/site-packages/airflow/operators/python.py", line 150, in execute
+    return_value = self.execute_callable()
+  File "/home/airflow/.local/lib/python3.6/site-packages/airflow/operators/python.py", line 161, in execute_callable
+    return self.python_callable(*self.op_args, **self.op_kwargs)
+  File "/usr/local/airflow/dags/XKCD_batch/dag.py", line 72, in store_xkcd_data
+    latest_num = get_latest_num()
+  File "/usr/local/airflow/dags/XKCD_batch/dag.py", line 54, in get_latest_num
+    cursor.execute("SELECT MAX(num) FROM staging.comics")
+psycopg2.errors.UndefinedTable: relation "staging.comics" does not exist
+LINE 1: SELECT MAX(num) FROM staging.comics
+                             ^
+
+[2025-03-10 10:29:04,458] {taskinstance.py:1551} INFO - Marking task as UP_FOR_RETRY. dag_id=xkcd_batch_loader, task_id=store_xkcd_data, execution_date=20250310T102903, start_date=20250310T102904, end_date=20250310T102904
+[2025-03-10 10:29:04,501] {local_task_job.py:149} INFO - Task exited with return code 1

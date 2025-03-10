@@ -1,0 +1,101 @@
+services:
+    postgres:
+        container_name: postgres
+        image: postgres:13
+        environment:
+            POSTGRES_USER: airflow
+            POSTGRES_PASSWORD: airflow
+            POSTGRES_DB: airflow
+        volumes:
+            - ../storage/postgres:/var/lib/postgresql/data
+
+    dwh:
+        container_name: dwh
+        image: postgres:13
+        environment:
+            POSTGRES_USER: dwh
+            POSTGRES_PASSWORD: dwh
+            POSTGRES_DB: dwh
+        ports:
+        - "5432:5432"
+        volumes:
+        - ../dwh/init-schema.sql:/docker-entrypoint-initdb.d/init-schema.sql
+        - ../storage/dwh:/var/lib/postgresql/data
+
+    airflow:
+        container_name: airflow
+        image: apache/airflow:2.1.2
+        environment:
+            AIRFLOW__CORE__EXECUTOR: LocalExecutor
+            AIRFLOW__CORE__SQL_ALCHEMY_CONN: postgresql+psycopg2://airflow:airflow@postgres/airflow
+            AIRFLOW__CORE__FERNET_KEY: '81HqDtbqAywKSOumSha3BhWNOdQ26slT6K0YaZeZyPs='
+            AIRFLOW__CORE__LOAD_EXAMPLES: 'False'
+            AIRFLOW__LOGGING__BASE_LOG_FOLDER: '/opt/airflow/logs'  # Explicitly set log folder
+        depends_on:
+            - postgres
+            - dwh
+        ports:
+            - "8080:8080"
+        volumes:
+            - ../dags:/opt/airflow/dags
+            - ../logs:/opt/airflow/logs  # Mount the logs folder for persistence
+        command: >
+            bash -c "
+            airflow db init &&
+            (airflow users list | grep -q 'admin' || airflow users create --username admin --password admin --firstname Admin --lastname User --role Admin --email admin@example.com) &&
+            (airflow connections get 'dwh_postgresql' || airflow connections add 'dwh_postgresql' --conn-type 'postgres' --conn-host 'dwh' --conn-schema 'dwh' --conn-login 'dwh' --conn-password 'dwh' --conn-port '5432') &&
+            (airflow connections get 'xkcd_api' || airflow connections add 'xkcd_api' --conn-type 'http' --conn-host 'https://xkcd.com/info.0.json') &&
+            (airflow variables get 'backlog_startpoint' || airflow variables set 'backlog_startpoint' '2500') &&
+            airflow webserver
+            "
+
+    airflow-scheduler:
+        container_name: airflow-scheduler
+        image: apache/airflow:2.1.2
+        environment:
+            AIRFLOW__CORE__EXECUTOR: LocalExecutor
+            AIRFLOW__CORE__SQL_ALCHEMY_CONN: postgresql+psycopg2://airflow:airflow@postgres/airflow
+            AIRFLOW__CORE__FERNET_KEY: '81HqDtbqAywKSOumSha3BhWNOdQ26slT6K0YaZeZyPs='
+            AIRFLOW__CORE__LOAD_EXAMPLES: 'False'
+            AIRFLOW__CORE__DAG_DISCOVERY_SAFE_MODE: 'False'  # Allow scanning subdirectories
+            AIRFLOW__CORE__DAGS_FOLDER: '/usr/local/airflow/dags'  # Explicitly set the DAGs folder
+            AIRFLOW__LOGGING__BASE_LOG_FOLDER: '/opt/airflow/logs'  # Explicitly set log folder
+        depends_on:
+            - postgres
+            - dwh
+        volumes:
+            - ../dags:/usr/local/airflow/dags
+            - ../logs:/opt/airflow/logs  # Mount the logs folder for persistence
+        command: "airflow scheduler"
+
+    dbt:
+        container_name: dbt
+        build: ../dbt
+        volumes:
+            - ../dbt:/dbt
+            - ..:/workspaces:cached
+        working_dir: /dbt
+        command: sleep infinity
+        user: root
+        depends_on:
+            - dwh
+
+    sqlpad:
+        container_name: sqlpad
+        image: sqlpad/sqlpad:latest
+        ports:
+            - "3000:3000"
+        environment:
+            SQLPAD_ALLOW_ANONYMOUS: true
+            SQLPAD_ADMIN: 'admin@sqlpad.com'
+            SQLPAD_ADMIN_PASSWORD: 'admin'
+            SQLPAD_CONNECTIONS__pgdemo__name: DWH
+            SQLPAD_CONNECTIONS__pgdemo__driver: postgres
+            SQLPAD_CONNECTIONS__pgdemo__host: dwh
+            SQLPAD_CONNECTIONS__pgdemo__database: dwh
+            SQLPAD_CONNECTIONS__pgdemo__username: dwh
+            SQLPAD_CONNECTIONS__pgdemo__password: dwh
+            SQLPAD_CONNECTIONS__pgdemo__multiStatementTransactionEnabled: 'true'
+            SQLPAD_CONNECTIONS__pgdemo__idleTimeoutSeconds: 86400
+        depends_on:
+            - dwh
