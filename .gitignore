@@ -22,3 +22,5 @@ dbt/logs/
 *.xdv
 *.ps
 *.synctex(busy)
+storage/
+live.main.tex
