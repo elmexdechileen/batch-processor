@@ -71,7 +71,8 @@
             "mtxr.sqltools-driver-pg",
             "mtxr.sqltools",
             "redhat.vscode-yaml",
-            "samuelcolvin.jinjahtml"
+            "samuelcolvin.jinjahtml",
+            "ms-azuretools.vscode-docker"
         ]
     }
 

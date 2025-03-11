@@ -1,4 +1,5 @@
 version: 2
+
 models:
   - name: dim_comics
     description: "A model for comics data"
@@ -16,6 +17,11 @@ models:
         description: "The URL of the comic image"
       - name: title
         description: "The title of the comic"
+    tests:
+      - row_count_match:
+          source_model: "{{ source('staging', 'comics') }}"
+          threshold: 10
+
   - name: fact_review
     description: "A table with comic reviews"
     columns:

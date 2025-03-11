@@ -52,6 +52,11 @@ one that is used for a daily load. This is scheduled at 4 am CET because a new c
 during the day since I think XKCD is an American. This dags waits for the data to be present, loads the data and
 afterwards runs `dbt test` and `dbt run` to make sure the data is made available in the DWH.
 
+### Initial run
+For the initial run it's important to run the `daily` DAG first and afterwards the `batch`. This
+way all the schema's and cross dependencies are created correctly.
+
+Username and password for Airflow is admin, admin. 
 
 ## ER diagram
 The entity relationship diagram is fairly simple. We are using a fairly standard dimensional model and not much
@@ -105,8 +110,8 @@ erDiagram
 
 ## Data quality checks
 I only implemented very simple data quality checks on the primary ID column (num) to 
-make sure it is not `NULL` and unique. You can write way more elaborate checks
-using sql but I thought this is a good example.
+make sure it is not `NULL` and unique. I have added another check to see if the row counts
+still match after the transformations (something that is very important to check).
 
 ## Screenshots
 DAG overview in Airflow
@@ -122,3 +127,10 @@ The daily load DAG:
 - **Data Lineage**: I did not spend time on implementing the `dbt docs` routine to automatically generate an interactive document in html. A next step could be to
 implement this and host it on a webserver.
 - **Advanced data insights**: Think of more advanced transformations and generate better insights.
+
+## Troubleshooting
+It could be that the permissions on some of the `dbt` project files are not set correctly. I tried
+to force UID 1000 for both Airflow, dbt and the .devcontainer to make sure that after dbt
+compilation all files are set to the correct user, known across all containers. In practice I saw
+this sometimes fails (something to fix in the long run). For now a quick fix would be to log in
+to the dbt container and `chmod -R 777 /dbt`. Which is not very nice but it works.

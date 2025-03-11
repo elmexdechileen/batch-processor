@@ -8,6 +8,11 @@ services:
             POSTGRES_DB: airflow
         volumes:
             - ../storage/postgres:/var/lib/postgresql/data
+        healthcheck:
+            test: ["CMD-SHELL", "pg_isready -U $${POSTGRES_USER}"]
+            interval: 10s
+            timeout: 5s
+            retries: 5
 
     dwh:
         container_name: dwh
@@ -24,13 +29,17 @@ services:
 
     airflow:
         container_name: airflow
-        build: ../airflow
+        build:
+            context: ../airflow
+            args:
+                AIRFLOW_UID: 1000
         environment:
             AIRFLOW__CORE__EXECUTOR: LocalExecutor
             AIRFLOW__CORE__SQL_ALCHEMY_CONN: postgresql+psycopg2://airflow:airflow@postgres/airflow
             AIRFLOW__CORE__FERNET_KEY: '81HqDtbqAywKSOumSha3BhWNOdQ26slT6K0YaZeZyPs='
             AIRFLOW__CORE__LOAD_EXAMPLES: 'False'
             AIRFLOW__LOGGING__BASE_LOG_FOLDER: '/opt/airflow/logs'  # Explicitly set log folder
+            AIRFLOW_UID: 1000
         depends_on:
             - postgres
             - dwh
@@ -40,6 +49,7 @@ services:
             - ../dags:/opt/airflow/dags
             - ../logs:/opt/airflow/logs  # Mount the logs folder for persistence
             - ../dbt:/dbt # Mount the dbt folder for dbt run
+        restart: always
         command: >
             sh -c "
             airflow db init &&
@@ -52,7 +62,11 @@ services:
 
     airflow-scheduler:
         container_name: airflow-scheduler
-        build: ../airflow
+        build:
+            context: ../airflow
+            args:
+                AIRFLOW_UID: 1000
+        restart: always
         environment:
             AIRFLOW__CORE__EXECUTOR: LocalExecutor
             AIRFLOW__CORE__SQL_ALCHEMY_CONN: postgresql+psycopg2://airflow:airflow@postgres/airflow
@@ -61,6 +75,7 @@ services:
             AIRFLOW__CORE__DAG_DISCOVERY_SAFE_MODE: 'False'  # Allow scanning subdirectories
             AIRFLOW__CORE__DAGS_FOLDER: '/usr/local/airflow/dags'  # Explicitly set the DAGs folder
             AIRFLOW__LOGGING__BASE_LOG_FOLDER: '/opt/airflow/logs'  # Explicitly set log folder
+            AIRFLOW_UID: 1000
         depends_on:
             - postgres
             - dwh
