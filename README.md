@@ -56,7 +56,10 @@ afterwards runs `dbt test` and `dbt run` to make sure the data is made available
 For the initial run it's important to run the `daily` DAG first and afterwards the `batch`. This
 way all the schema's and cross dependencies are created correctly.
 
-Username and password for Airflow is admin, admin. 
+Username and password for Airflow is `admin`, `admin` and it can be reached at [http://localhost:8080/home](http://localhost:8080/home).
+
+Furthermore I used `pdfLaTeX` to have a version controlled presentation. You can generate it
+yourself based on the Tex file (I have included the Tex Preview plugin in the dev container).
 
 ## ER diagram
 The entity relationship diagram is fairly simple. We are using a fairly standard dimensional model and not much
